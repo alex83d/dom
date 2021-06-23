@@ -12,26 +12,24 @@
             background-color: rgba(201, 194, 194, 0.952);
         }
 
-        #shadow:target {
+        .overlay:target {
             display: block;
         }
 
-        #shadow {
+        .overlay {
             background: rgba(123, 124, 129, 0.68);
             width: 100%;
             height: 100%;
             position: fixed;
             top: 0;
             left: 0;
-            display: none;
+            /*display: none;*/
             z-index: 10000;
         }
 
-        .content {
-            text-align: center;
-        }
+        
 
-        .modal {
+        .container-modal {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -45,17 +43,29 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 16px 20px rgba(0, 0, 0, 0.2);
         }
 
+        .content {
+            text-align: center;
+        }
+
+        .header {
+            text-align: center;
+        }
+
         p {
             cursor: context-menu;
-            font-weight: 500;            
+            font-weight: 500;
         }
 
         a.close_window {
             position: absolute;
-            right: 5%;
-            top: 16px;
-            border: none;
+            right: -2%;
+            top: -2%;
+            border-radius: 50%;
+            height: 19px;
+            width: 19px;
             text-decoration: none;
+            background-color: crimson;
+            color: #fff;
         }
 
         button {
@@ -64,7 +74,7 @@
         }
     </style>
 
-    <div class="content">
+    <div class="header">
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut&nbsp;labore et&nbsp;dolore magna aliqua. Ut&nbsp;enim ad
@@ -73,15 +83,61 @@
             reprehenderit in&nbsp;voluptate velit esse cillum dolore eu&nbsp;fugiat nulla
             pariatur. Excepteur sint occaecat cupidatat
         </p>
-        <button onclick="location.hash ='shadow'">modal window</button>
+        <button  id="openOverlay">modal window</button>
     </div>
 
-    <div id="shadow">
+    <!--<div id="overlay">
+        onclick="location.hash='overlay'"
         <div class="modal">
             <a href="#close_window" class="close_window">&#10060</a>
 
         </div>
-    </div>
+    </div>-->
+
+    <script>
+const openButton = document.querySelector("#openOverlay");
+const body = document.body;
+const successModal = createModal("Your message has been sent!");
+
+openButton.addEventListener("click", (e) => {
+  body.appendChild(successModal);
+});
+
+function createModal(content) {
+  const overlayElement = document.createElement("div");
+  overlayElement.classList.add("overlay");
+
+  overlayElement.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("content")) {
+      closeElement.click();
+    }
+});
+
+  const containerElement = document.createElement("div");
+  containerElement.classList.add("container-modal");
+
+  const contentElement = document.createElement("div");
+  contentElement.classList.add("content");
+
+  contentElement.innerHTML = content;
+
+  const closeElement = document.createElement("a");
+  closeElement.classList.add("close_window");
+  closeElement.textContent = "x";
+  closeElement.href = "#";
+
+  closeElement.addEventListener("click", (e) => {
+    e.preventDefault();
+    body.removeChild(overlayElement);
+  });
+
+  overlayElement.appendChild(containerElement);
+  containerElement.appendChild(closeElement);
+  containerElement.appendChild(contentElement);
+
+  return overlayElement;
+}
+    </script>
 </body>
 
 </html>
