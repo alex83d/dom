@@ -11,6 +11,7 @@
         body {
             background-color: rgba(201, 194, 194, 0.952);
         }
+
         #shadow:target {
             display: block;
         }
@@ -26,6 +27,10 @@
             z-index: 10000;
         }
 
+        .content {
+            text-align: center;
+        }
+
         .modal {
             position: absolute;
             top: 50%;
@@ -34,14 +39,15 @@
             border: 1px solid hsla(170, 7%, 65%, 0.788);
             padding: 50px;
             transform: translate(-50%, -50%);
-            background-color: rgb(190, 200, 201);
+            background-color: rgb(47, 56, 61);
+            color: #fff;
             text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 16px 20px rgba(0, 0, 0, 0.2);
         }
 
         p {
             cursor: context-menu;
-            font-weight: 500;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2), 0 16px 20px rgba(0,0,0,0.2);
+            font-weight: 500;            
         }
 
         a.close_window {
@@ -58,18 +64,22 @@
         }
     </style>
 
-    <button onclick="location.hash ='shadow'">modal window</button>
+    <div class="content">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut&nbsp;labore et&nbsp;dolore magna aliqua. Ut&nbsp;enim ad
+            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex&nbsp;ea&nbsp;commodo consequat. Duis aute irure dolor in
+            reprehenderit in&nbsp;voluptate velit esse cillum dolore eu&nbsp;fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat
+        </p>
+        <button onclick="location.hash ='shadow'">modal window</button>
+    </div>
+
     <div id="shadow">
         <div class="modal">
             <a href="#close_window" class="close_window">&#10060</a>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut&nbsp;labore et&nbsp;dolore magna aliqua. Ut&nbsp;enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex&nbsp;ea&nbsp;commodo consequat. Duis aute irure dolor in
-                reprehenderit in&nbsp;voluptate velit esse cillum dolore eu&nbsp;fugiat nulla
-                pariatur. Excepteur sint occaecat cupidatat
-            </p>
+
         </div>
     </div>
 </body>
